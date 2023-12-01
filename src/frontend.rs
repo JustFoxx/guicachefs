@@ -17,13 +17,15 @@ pub fn start_app() -> ExitCode {
 fn build_window(app: &Application) {
     let grid = &Grid::builder()
         .halign(Align::Center)
-        .valign(Align::Center)
+        .valign(Align::Fill)
+        .column_spacing(10)
+        .row_spacing(10)
         .build();
 
     let window = &ApplicationWindow::builder()
         .application(app)
-        .default_width(320)
-        .default_height(200)
+        .default_width(500)
+        .default_height(450)
         .resizable(false)
         .title("Guicachefs")
         .child(grid)
