@@ -10,11 +10,11 @@ pub fn start_app() -> ExitCode {
         .application_id(APP_ID)
         .build();
 
-    app.connect_activate(|app| build_window(app,build_ui));
+    app.connect_activate(build_window);
     app.run()
 }
 
-fn build_window<F: FnOnce(&Grid)>(app: &Application, builder: F) {
+fn build_window(app: &Application) {
     let grid = &Grid::builder()
         .halign(Align::Center)
         .valign(Align::Center)
@@ -29,7 +29,7 @@ fn build_window<F: FnOnce(&Grid)>(app: &Application, builder: F) {
         .child(grid)
         .build();
 
-    builder(grid);
+    build_ui(grid);
 
     window.present();
 }
