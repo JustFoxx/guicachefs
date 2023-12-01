@@ -27,7 +27,7 @@ fn build_window(app: &Application) {
 
     let window = &ApplicationWindow::builder()
         .application(app)
-        .resizable(true)
+        .resizable(false)
         .title("Guicachefs")
         .child(grid)
         .build();
