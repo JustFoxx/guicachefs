@@ -1,0 +1,15 @@
+[package]
+name = "guicachefs"
+version = "0.1.0"
+edition = "2021"
+authors = ["JustFoxx <kittech@skiff.com>"]
+description = "GUI for bcachefs tools"
+readme = "README.md"
+license-file = "LICENSE"
+repository = "https://github.com/JustFoxx/guicachefs"
+keywords = ["bcachefs", "gui", "tools", "gtk", "gtk4"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gtk4 = "0.7.3"
