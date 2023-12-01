@@ -5,25 +5,24 @@ use gtk4::{Grid};
 use gtk4::prelude::{ApplicationExt, ApplicationExtManual, ButtonExt, EditableExt, GridExt, WidgetExt};
 use gtk4::traits::GtkWindowExt;
 
-const APP_ID: &str = "org.gtk_rs.HelloWorld1";
+const APP_ID: &str = "io.github.justfoxx.guicachefs";
 
 fn main() -> glib::ExitCode {
-    println!("Test");
     let app = Application::builder()
         .application_id(APP_ID)
         .build();
 
-    app.connect_activate(build_ui);
+    app.connect_activate(|app| build_window(app,build_ui));
     app.run()
 }
 
-fn build_ui(app: &Application) {
+fn build_window<F: FnOnce(&Grid)>(app: &Application, builder: F) {
     let grid = &Grid::builder()
         .halign(Align::Center)
         .valign(Align::Center)
         .build();
 
-    let window = ApplicationWindow::builder()
+    let window = &ApplicationWindow::builder()
         .application(app)
         .default_width(320)
         .default_height(200)
@@ -32,6 +31,12 @@ fn build_ui(app: &Application) {
         .child(grid)
         .build();
 
+    builder(grid);
+
+    window.present();
+}
+
+fn build_ui(grid: &Grid) {
     let components = Rc::new((
         Button::builder()
             .label("Click me!")
@@ -54,6 +59,4 @@ fn build_ui(app: &Application) {
 
     grid.attach(&components.0, 0, 0, 10, 1);
     grid.attach_next_to(&components.1, Some(&components.0), gtk4::PositionType::Right, 1, 1);
-
-    window.present();
 }
