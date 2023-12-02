@@ -1,12 +1,11 @@
 use std::rc::Rc;
-use gtk4::{Align, Application, ApplicationWindow, DropDown, Grid, Text, Label};
+use gtk4::{Align, Application, ApplicationWindow, DropDown, Grid, Label};
 use gtk4::glib::{ExitCode};
-use gtk4::prelude::{ApplicationExt, ApplicationExtManual, EditableExt, GridExt, GtkWindowExt};
-use crate::APP_ID;
+use gtk4::prelude::{ApplicationExt, ApplicationExtManual, GridExt, GtkWindowExt};
+use crate::{APP_ID, LANG};
 
 
 pub fn start_app() -> ExitCode {
-    println!("{}", sys_locale::get_locale().unwrap_or("en-US".to_string()));
     let app = Application::builder()
         .application_id(APP_ID)
         .build();
@@ -41,7 +40,7 @@ fn build_main_window(app: &Application, grid: &Grid) -> ApplicationWindow {
     ApplicationWindow::builder()
         .application(app)
         .resizable(true)
-        .title("GUICacheFS")
+        .title(&LANG["main-window.title"])
         .child(grid)
         .build()
 }

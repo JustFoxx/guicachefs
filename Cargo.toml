@@ -13,5 +13,6 @@ keywords = ["bcachefs", "gui", "tools", "gtk", "gtk4"]
 
 [dependencies]
 gtk4 = "0.7.3"
+include_dir = "0.7.3"
 serde_json = "1.0.108"
 sys-locale = "0.3.1"
