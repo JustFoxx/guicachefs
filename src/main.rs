@@ -1,9 +1,17 @@
 mod frontend;
+mod backend;
 
+use std::collections::HashMap;
 use gtk4::glib::ExitCode;
 use crate::frontend::start_app;
 
 const APP_ID: &str = "io.github.justfoxx.guicachefs";
+
+type LangMap = HashMap<String,String>;
+
+fn get_string() {
+
+}
 
 fn main() -> Result<(), String> {
     match start_app() {
