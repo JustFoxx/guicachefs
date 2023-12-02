@@ -2,7 +2,7 @@ use std::rc::Rc;
 use gtk4::{Align, Application, ApplicationWindow, DropDown, Grid, Label};
 use gtk4::glib::{ExitCode};
 use gtk4::prelude::{ApplicationExt, ApplicationExtManual, GridExt, GtkWindowExt};
-use crate::{APP_ID, LANG};
+use crate::{APP_ID, get_translation, LANG};
 
 
 pub fn start_app() -> ExitCode {
@@ -40,7 +40,7 @@ fn build_main_window(app: &Application, grid: &Grid) -> ApplicationWindow {
     ApplicationWindow::builder()
         .application(app)
         .resizable(true)
-        .title(&LANG["main-window.title"])
+        .title(get_translation("main-window.title"))
         .child(grid)
         .build()
 }

@@ -12,15 +12,19 @@ const APP_ID: &str = "io.github.justfoxx.guicachefs";
 static LANG_DIR: include_dir::Dir = include_dir!("langs");
 
 type LangMap = HashMap<String,String>;
-pub static LANG: Lazy<LangMap> = Lazy::new(|| {
+static LANG: Lazy<LangMap> = Lazy::new(|| {
     let lang = sys_locale::get_locale().unwrap_or("en-US".to_string()).to_lowercase();
-    let data = LANG_DIR.get_file(format!("{lang}.json")).unwrap_or_else(|| {
-        println!("Language {lang} not yet implemented");
+    let file = LANG_DIR.get_file(format!("{lang}.json")).unwrap_or_else(|| {
+        println!("Language {lang} is yet not supported");
         LANG_DIR.get_file("en-us.json").unwrap()
     });
-    let contents = data.contents_utf8().unwrap();
+    let contents = file.contents_utf8().unwrap();
     serde_json::from_str(contents).unwrap()
 });
+
+fn get_translation(key: &str) -> String {
+    LANG.get(key).unwrap_or(&key.to_string()).to_string()
+}
 
 fn main() -> Result<(), String> {
     match start_app() {
