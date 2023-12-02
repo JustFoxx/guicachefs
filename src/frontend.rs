@@ -51,7 +51,6 @@ fn build_components() -> (Button, Text, Text, Text, Text) {
             .build(),
 
         Text::builder()
-            .editable(true)
             .text("cool")
             .build(),
 
