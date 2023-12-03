@@ -22,8 +22,14 @@ static LANG: Lazy<LangMap> = Lazy::new(|| {
     serde_json::from_str(contents).unwrap()
 });
 
+static DEFAULT_LANG: Lazy<LangMap> = Lazy::new(|| {
+    let file = LANG_DIR.get_file("en-us.json").unwrap();
+    let contents = file.contents_utf8().unwrap();
+    serde_json::from_str(contents).unwrap()
+});
+
 fn get_translation(key: &str) -> String {
-    LANG.get(key).unwrap_or(&key.to_string()).to_string()
+    LANG.get(key).unwrap_or(DEFAULT_LANG.get(key).unwrap()).to_string()
 }
 
 fn main() -> Result<(), String> {
