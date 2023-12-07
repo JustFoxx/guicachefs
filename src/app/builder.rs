@@ -1,5 +1,6 @@
 use std::rc::Rc;
-use gtk4::{Align, Application, ApplicationWindow, Grid};
+use gtk4::{Align, ApplicationWindow, Grid};
+use libadwaita::Application;
 use gtk4::prelude::GtkWindowExt;
 use crate::app::components::{attach_components, get_components};
 use crate::app::listeners::subscribe;
