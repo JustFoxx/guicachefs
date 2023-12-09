@@ -55,7 +55,6 @@ pub static DATAS: &[&str; 2] = &[
 pub fn get_components() -> Components {
     (
         DropDown::builder()
-            .tooltip_text("Choose option")
             .model(&StringList::new(OPTIONS))
             .tooltip_text("Choose option. If the option is chosen, here will be description of it")
             .build()
